@@ -1,0 +1,92 @@
+header {
+    position: relative;
+    
+    // background-image: url('https://source.unsplash.com/128x640/?flower,girl');
+    // background-size: cover;
+    // background-repeat: no-repeat;
+    // background-position: center;
+
+    width: 100%;
+    text-align: center;
+    background-color: var(--theme);
+    box-shadow: var(--shadow);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    div {
+        margin: auto;
+
+        &:nth-child(n+0) {
+            width: 45%;
+            display: flex;
+            align-items: center;
+            grid-gap: 8px;
+            
+            color: var(--color);
+        }
+        
+        &:nth-child(1) {
+            justify-content: start;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        &:nth-child(2) {
+            justify-content: flex-end;
+            font-weight: bold;
+
+            img {
+                width: 24px;
+                filter: invert(100%);
+            }
+        }
+    }
+    
+
+    #open-user-setting {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;    
+        background-color: var(--transparent);
+        z-index: 9;
+
+        display: none;
+        align-items: center;
+        justify-content: center;
+        
+        &.show {
+            display: flex;
+        }
+
+        .container {
+            position: relative;
+            background-color: var(--theme);
+            border-radius: var(--radius);
+            font-size: 16px;
+            padding: 12px;
+
+            display: flex;
+
+
+            fieldset {
+                width: 100%;
+                padding: 12px;
+
+                legend {
+                    font-size: 16px;
+                    padding: 12px;
+                }
+            }
+
+
+            .close-setting {
+                position: absolute;
+                top: 0;
+                right: -48px;
+            }
+        }
+    }
+}

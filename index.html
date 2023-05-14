@@ -5,11 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHADOW</title>
     <!-- <base href="https://kucingheart4726.ga/"> -->
-    <link rel="stylesheet" href="style.css">
-    <script src="user.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/user.js"></script>
 </head>
 <body>
-    <div id="content"></div>
-    <script src="script.js"></script>
+    
+    <header>
+        <div>
+            <span>SHADOW</span>
+        </div>
+        <div>
+            <img src="./img/user.svg">
+            <span>user</span>
+            <img id="user-setting" src="./img/sett.svg">
+        </div>
+        <div id="open-user-setting"></div>
+    </header>
+    
+    <main>
+
+        <div class="temp">
+            <div class="premium">
+                <div class="countdown">
+                    <span id="countdown">00</span>
+                    <img src="./img/list.svg">
+                </div>
+
+                <span>1/10 free email</span>
+                <span>
+                    <p>upgrade to <button>Premium</button></p>
+                </span>
+            </div>
+            <ul id="list-mail"></ul>
+            <div id="create">
+                <div class="slider">
+                    <span id="let-create">
+                        <img src="./img/create.svg">
+                        <p>Create</p>
+                    </span>
+                    
+                    <span id="this-new-mail"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="inbox">
+            <div class="head">
+                <img src="./img/temp.svg">
+                <span id="open-email"></span>
+                <img id="option-email" title="" src="./img/delete.svg">
+            </div>
+
+            <div id="new-msn" class="msn">
+                <div class="no_message">
+                    <p>no message</p>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <aside>
+        <div class="sect-first">
+            <img src="./img/noads.svg">
+            <p>no ADS (7 days) for free user. <br>Protects from adware and malware.</p>
+        </div>
+        <div class="sect-second">
+            <img src="./img/step.svg">
+            <p>You will have the email after you click the lock button before it finally disappears because it is reloaded, you can create more temporary email after you register.</p>
+        </div>
+        <div class="sect-third">
+            <img src="./img/temporary.svg">
+            <p>Emails are just temporarily stored. We just store the latest mails received in memory and flush them out as needed. Temporary Email box at your disposal because no one likes an inbox full of spam emails.</p>
+        </div>
+        <div class="sect-forth">
+            <img src="./img/support.svg">
+            <p>Use our simple and functional design to get your disposable email. We provide either a random email account or you can choose an address of your choice for example : shadow@${location.hostname}. Please support us to become your favorite temporary email service.</p>
+        </div>
+    </aside>
+    
+    <footer>
+        <p id="cr">&copy; </p>
+        <script src="js/script.js"></script>
+        <script src="js/settings.js"></script>
+        <script src="js/oninbox.js"></script>
+    </footer>
 </body>
 </html>

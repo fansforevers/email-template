@@ -1,105 +1,5 @@
-:root {
-  --bg: rgba(0,0,0,0.4);
-  --color: white;
-  --shadow: .5px .5px .5px #0f0f0f;
-  --theme: #0e0e0e;
-  --transparent: rgba(225,225,225,0.4);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-::-webkit-scrollbar {
-  width: 1px;
-  height: 1px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: grey;
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 1px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: grey;
-  border-radius: 1px;
-}
-
-body {
-  background-color: #333;
-  width: 100vw;
-  color: var(--color);
-  text-shadow: var(--shadow);
-  font-family: Georgia, 'Times New Roman', Times, sans-serif;
-}
-
-#content {
-  display: -ms-grid;
-  display: grid;
-      grid-template-areas: "header" "main" "section" "footer";
-  -ms-grid-rows: 76px (min-content)[2] 10vh;
-      grid-template-rows: 76px repeat(2, -webkit-min-content) 10vh;
-      grid-template-rows: 76px repeat(2, min-content) 10vh;
-  grid-gap: 12px;
-}
-
-@media screen and (max-width: 768px) {
-  #content {
-        grid-template-areas: "header" "main" "section" "footer";
-  }
-  #content header {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    grid-area: header;
-  }
-  #content main {
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-    grid-area: main;
-    width: 100%;
-    margin: auto;
-    display: -ms-grid;
-    display: grid;
-        grid-template-areas: "temp"  "inbox";
-    -ms-grid-columns: 100%;
-        grid-template-columns: 100%;
-    -ms-grid-rows: max-content;
-        grid-template-rows: -webkit-max-content;
-        grid-template-rows: max-content;
-    grid-gap: 4px;
-  }
-  #content main .temp {
-    -ms-grid-row: 1;
-    -ms-grid-row-span: 2;
-    -ms-grid-column: 1;
-    grid-area: temp;
-  }
-  #content main .inbox {
-    -ms-grid-row: 1;
-    -ms-grid-row-span: 2;
-    -ms-grid-column: 2;
-    grid-area: inbox;
-  }
-  #content section {
-    -ms-grid-row: 3;
-    -ms-grid-column: 1;
-    grid-area: section;
-  }
-  #content footer {
-    -ms-grid-row: 4;
-    -ms-grid-column: 1;
-    grid-area: footer;
-  }
-}
-
 header {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  grid-area: header;
+  position: relative;
   width: 100%;
   text-align: center;
   background-color: var(--theme);
@@ -153,18 +53,57 @@ header div:nth-child(2) img {
           filter: invert(100%);
 }
 
-header div:nth-child(2) select {
-  color: var(--theme);
-  background-color: var(--color);
-  border: 0;
-  font-size: 12px;
-  padding: 8px;
+header #open-user-setting {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--transparent);
+  z-index: 9;
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+header #open-user-setting.show {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header #open-user-setting .container {
+  position: relative;
+  background-color: var(--theme);
+  border-radius: var(--radius);
+  font-size: 16px;
+  padding: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header #open-user-setting .container fieldset {
+  width: 100%;
+  padding: 12px;
+}
+
+header #open-user-setting .container fieldset legend {
+  font-size: 16px;
+  padding: 12px;
+}
+
+header #open-user-setting .container .close-setting {
+  position: absolute;
+  top: 0;
+  right: -48px;
 }
 
 main {
-  -ms-grid-row: 2;
-  -ms-grid-column: 1;
-  grid-area: main;
   width: 100%;
   height: 100%;
   margin: auto;
@@ -205,7 +144,7 @@ main .temp {
   -ms-grid-column: 1;
   grid-area: temp;
   background-color: var(--bg);
-  border-radius: 4px;
+  border-radius: var(--radius);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -223,8 +162,22 @@ main .temp {
 
 main .temp .premium {
   width: 100%;
-  height: 44px;
   background-color: var(--theme);
+  padding: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 12px;
+}
+
+main .temp .premium .countdown {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -236,8 +189,24 @@ main .temp .premium {
           justify-content: center;
 }
 
-main .temp .premium div {
-  width: 95%;
+main .temp .premium .countdown img {
+  width: 24px;
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
+}
+
+main .temp .premium .countdown #countdown {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-30%, -40%);
+          transform: translate(-30%, -40%);
+  color: var(--theme);
+  font-size: 12px;
+  z-index: 1;
+}
+
+main .temp .premium > span {
   border: 1px solid var(--theme);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -250,14 +219,14 @@ main .temp .premium div {
           justify-content: space-between;
 }
 
-main .temp .premium div p {
+main .temp .premium > span p {
   font-size: 12px;
 }
 
-main .temp .premium div p button {
+main .temp .premium > span p button {
   background-color: gold;
   border: 0;
-  border-radius: 4px;
+  border-radius: var(--radius);
   color: var(--theme);
   font-size: 12px;
   padding: 4px;
@@ -266,111 +235,61 @@ main .temp .premium div p button {
 main .temp ul {
   list-style-type: none;
   width: 100%;
+  max-height: 320px;
+  overflow: scroll;
+  padding: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 4px;
+}
+
+main .temp ul::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+main .temp ul::-webkit-scrollbar-thumb {
+  background: yellow;
 }
 
 main .temp ul li {
+  position: relative;
   background-color: var(--transparent);
-  border-radius: 4px;
-  margin: 4px;
-  display: -ms-grid;
-  display: grid;
-      grid-template-areas: "list mail notif" "list editor editor";
-  -ms-grid-columns: 10% 80% 10%;
-      grid-template-columns: 10% 80% 10%;
-  -ms-grid-rows: (50%)[2];
-      grid-template-rows: repeat(2, 50%);
-}
-
-main .temp ul li div.list {
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 2;
-  -ms-grid-column: 1;
-  grid-area: list;
+  border-radius: var(--radius);
+  font-size: 14px;
+  padding: 8px;
+  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  position: relative;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  gap: 12px;
 }
 
-main .temp ul li div.list img {
-  width: 24px;
-  -webkit-filter: invert(100%);
-          filter: invert(100%);
-}
-
-main .temp ul li div.list #countdown {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-30%, -40%);
-          transform: translate(-30%, -40%);
-  color: var(--theme);
-  font-size: 12px;
-  z-index: 1;
-}
-
-main .temp ul li div.mail {
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
-  grid-area: mail;
-  padding: 4px 12px;
-  position: relative;
-  top: 8px;
-  overflow: hidden;
-  text-transform: lowercase;
-}
-
-main .temp ul li div.notif {
-  -ms-grid-row: 1;
-  -ms-grid-column: 3;
-  grid-area: notif;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-
-main .temp ul li div.notif img {
-  width: 20px;
-  -webkit-filter: invert(100%);
-          filter: invert(100%);
-}
-
-main .temp ul li div.notif #new-notif {
-  color: var(--color);
-  display: none;
+main .temp ul li .mail::before {
+  content: '+ ';
+  font-weight: bold;
 }
 
 main .temp ul li div.editor {
-  -ms-grid-row: 2;
-  -ms-grid-column: 2;
-  -ms-grid-column-span: 2;
-  grid-area: editor;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: start;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 main .temp ul li div.editor button {
   border: 0;
-  border-radius: 4px;
+  border-radius: var(--radius);
   padding: 2px 2px 0 2px;
   cursor: pointer;
   background-color: var(--color);
@@ -382,38 +301,85 @@ main .temp ul li div.editor button img {
   width: 16px;
 }
 
-main .temp ul li:last-child {
-  background-color: rgba(0, 0, 0, 0);
+main .temp #create {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 12px 8px;
+}
+
+main .temp #create.create .slider {
+  left: calc(-100% - 4px);
+}
+
+main .temp #create .slider {
+  position: relative;
+  top: 0;
+  left: 2px;
+  width: 200%;
+  -webkit-transition: .3s;
+  transition: .3s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  gap: 12px;
+}
+
+main .temp #create .slider span {
+  width: 100%;
+  border: 2px dashed var(--color);
+  border-radius: var(--radius);
   padding: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 8px;
+}
+
+main .temp #create .slider span#this-new-mail {
   display: -ms-grid;
   display: grid;
-      grid-template-areas: "clear create";
-  -ms-grid-columns: (1fr)[2];
-      grid-template-columns: repeat(2, 1fr);
-  -ms-grid-rows: (1fr)[1];
-      grid-template-rows: repeat(1, 1fr);
-  grid-gap: 4px;
+      grid-template-areas: "label label" "btn1 btn2";
 }
 
-main .temp ul li:last-child div {
-  border: 1px dashed var(--color);
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-main .temp ul li:last-child div.clear {
+main .temp #create .slider span#this-new-mail label {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
-  grid-area: clear;
+  -ms-grid-column-span: 2;
+  grid-area: label;
 }
 
-main .temp ul li:last-child div.create {
-  -ms-grid-row: 1;
+main .temp #create .slider span#this-new-mail button:nth-child(2) {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: btn1;
+}
+
+main .temp #create .slider span#this-new-mail button:nth-child(3) {
+  -ms-grid-row: 2;
   -ms-grid-column: 2;
-  grid-area: create;
+  grid-area: btn2;
 }
 
-main .temp ul li:last-child div.clear, main .temp ul li:last-child div.create {
+main .temp #create .slider span label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -423,15 +389,29 @@ main .temp ul li:last-child div.clear, main .temp ul li:last-child div.create {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  gap: 4px;
 }
 
-main .temp ul li:last-child div.clear img, main .temp ul li:last-child div.create img {
+main .temp #create .slider span label input[type="text"] {
+  background-color: unset;
+  border: 0;
+  color: var(--color);
+  padding: 4px 0 4px 8px;
+  text-align: right;
+}
+
+main .temp #create .slider span button {
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+main .temp #create .slider span img {
   width: 24px;
   -webkit-filter: invert(100%);
           filter: invert(100%);
 }
 
-main .temp ul li:last-child div.clear p, main .temp ul li:last-child div.create p {
+main .temp #create .slider span p {
   color: var(--color);
   margin-left: 8px;
 }
@@ -443,7 +423,7 @@ main .inbox {
   grid-area: inbox;
   width: 100%;
   border: 1px solid var(--theme);
-  border-radius: 4px;
+  border-radius: var(--radius);
   -webkit-box-shadow: var(--bg);
           box-shadow: var(--bg);
   display: -webkit-box;
@@ -470,31 +450,13 @@ main .inbox .head {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  grid-gap: 8px;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  gap: 8px;
 }
 
-main .inbox .head div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  grid-gap: 12px;
-  text-transform: lowercase;
-}
-
-main .inbox .head div img {
+main .inbox .head img {
   width: 24px;
   -webkit-filter: invert(100%);
           filter: invert(100%);
@@ -517,9 +479,9 @@ main .inbox .msn {
 main .inbox .msn .no_message {
   background-color: var(--transparent);
   border: 1.5px dashed var(--bg);
-  border-radius: 12px;
-  width: 94%;
-  height: 94%;
+  border-radius: var(--radius);
+  width: 100%;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -540,8 +502,8 @@ main .inbox .msn .no_message p {
 main .inbox .msn .new_message {
   background-color: var(--theme);
   border: 1.5px dashed var(--bg);
-  border-radius: 4px;
-  width: 94%;
+  border-radius: var(--radius);
+  width: 100%;
   height: -webkit-min-content;
   height: -moz-min-content;
   height: min-content;
@@ -585,10 +547,136 @@ main .inbox .msn .new_message .new_readmore {
   text-align: right;
 }
 
-section {
+footer {
+  background-color: var(--theme);
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+footer p {
+  font-size: 14px;
+}
+
+:root {
+  --bg: rgba(0,0,0,0.4);
+  --color: white;
+  --shadow: .5px .5px .5px #0f0f0f;
+  --theme: #0e0e0e;
+  --transparent: rgba(225,225,225,0.4);
+  --radius: 4px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 1px;
+  height: 1px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: grey;
+}
+
+body {
+  background-color: #333;
+  width: 100vw;
+  color: var(--color);
+  text-shadow: var(--shadow);
+  font-family: Georgia, 'Times New Roman', Times, sans-serif;
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "header" "main" "aside" "footer";
+  -ms-grid-rows: 76px (min-content)[2] 10vh;
+      grid-template-rows: 76px repeat(2, -webkit-min-content) 10vh;
+      grid-template-rows: 76px repeat(2, min-content) 10vh;
+  grid-gap: 12px;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+        grid-template-areas: "header" "main" "aside" "footer";
+  }
+  body header {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: header;
+  }
+  body main {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: main;
+    width: 100%;
+    margin: auto;
+    display: -ms-grid;
+    display: grid;
+        grid-template-areas: "temp"  "inbox";
+    -ms-grid-columns: 100%;
+        grid-template-columns: 100%;
+    -ms-grid-rows: max-content;
+        grid-template-rows: -webkit-max-content;
+        grid-template-rows: max-content;
+    grid-gap: 4px;
+  }
+  body main .temp {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    grid-area: temp;
+  }
+  body main .inbox {
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: inbox;
+  }
+  body aside {
+    -ms-grid-row: 3;
+    -ms-grid-column: 1;
+    grid-area: aside;
+  }
+  body footer {
+    -ms-grid-row: 4;
+    -ms-grid-column: 1;
+    grid-area: footer;
+  }
+}
+
+header {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: header;
+}
+
+main {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: main;
+}
+
+aside {
   -ms-grid-row: 3;
   -ms-grid-column: 1;
-  grid-area: section;
+  grid-area: aside;
   display: -ms-grid;
   display: grid;
       grid-template-areas: "s1 s2 s3 s4";
@@ -608,7 +696,7 @@ section {
 }
 
 @media screen and (max-width: 768px) {
-  section {
+  aside {
         grid-template-areas: "s1 s2" "s3 s4";
     -ms-grid-columns: (45%)[2];
         grid-template-columns: repeat(2, 45%);
@@ -616,53 +704,53 @@ section {
         grid-template-rows: repeat(2, -webkit-min-content);
         grid-template-rows: repeat(2, min-content);
   }
-  section .sect-first {
+  aside .sect-first {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
     grid-area: s1;
   }
-  section .sect-second {
+  aside .sect-second {
     -ms-grid-row: 1;
     -ms-grid-column: 2;
     grid-area: s2;
   }
-  section .sect-third {
+  aside .sect-third {
     -ms-grid-row: 2;
     -ms-grid-column: 1;
     grid-area: s3;
   }
-  section .sect-forth {
+  aside .sect-forth {
     -ms-grid-row: 2;
     -ms-grid-column: 2;
     grid-area: s4;
   }
 }
 
-section .sect-first {
+aside .sect-first {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   grid-area: s1;
 }
 
-section .sect-second {
+aside .sect-second {
   -ms-grid-row: 1;
   -ms-grid-column: 2;
   grid-area: s2;
 }
 
-section .sect-third {
+aside .sect-third {
   -ms-grid-row: 1;
   -ms-grid-column: 3;
   grid-area: s3;
 }
 
-section .sect-forth {
+aside .sect-forth {
   -ms-grid-row: 1;
   -ms-grid-column: 4;
   grid-area: s4;
 }
 
-section .sect-first, section .sect-second, section .sect-third, section .sect-forth {
+aside .sect-first, aside .sect-second, aside .sect-third, aside .sect-forth {
   background-color: var(--bg);
   border: 1px solid var(--theme);
   border-radius: 4px;
@@ -683,14 +771,14 @@ section .sect-first, section .sect-second, section .sect-third, section .sect-fo
   padding: 8px;
 }
 
-section .sect-first img, section .sect-second img, section .sect-third img, section .sect-forth img {
+aside .sect-first img, aside .sect-second img, aside .sect-third img, aside .sect-forth img {
   max-width: 64px;
   max-height: 64px;
   -webkit-filter: invert(100%);
           filter: invert(100%);
 }
 
-section .sect-first p, section .sect-second p, section .sect-third p, section .sect-forth p {
+aside .sect-first p, aside .sect-second p, aside .sect-third p, aside .sect-forth p {
   min-height: 96px;
   color: var(--color);
   font-size: 10px;
@@ -701,43 +789,16 @@ footer {
   -ms-grid-row: 4;
   -ms-grid-column: 1;
   grid-area: footer;
-  background-color: var(--theme);
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
-footer p {
-  font-size: 14px;
-}
-
-#cookie {
+.allow-cookie {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 48px;
   background-color: var(--theme);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-#cookie div {
-  width: 90%;
+  padding: 0 24px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -749,47 +810,19 @@ footer p {
           justify-content: space-between;
 }
 
-#cookie div p {
+.allow-cookie p {
   font-size: 12px;
 }
 
-#cookie div p a {
+.allow-cookie p a {
   color: gold;
 }
 
-#cookie div button {
+.allow-cookie button {
   background-color: var(--color);
   border: 0;
   padding: 4px 12px;
   border-radius: 4px;
-}
-
-.maintenance {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.2);
-  z-index: 2;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.maintenance div {
-  background-color: var(--color);
-  color: var(--theme);
-  font-size: 32px;
-  padding: 16px;
-  border-radius: 4px;
-  text-align: center;
-  text-shadow: var(--shadow);
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */
