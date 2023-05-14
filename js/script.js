@@ -20,13 +20,13 @@ if(localStorage.getItem("user") === null || localStorage.getItem("user") === und
 function setItem_localStorage() {
     let retrieveUser = JSON.stringify(user);
     localStorage.setItem("user", retrieveUser);
-    console.log(user);
+    // console.log(user);
     return;
 }
 function getItem_localStorage() {
     let retrieveUser = localStorage.getItem("user");
     user = JSON.parse(retrieveUser);
-    console.log(user);
+    // console.log(user);
     return user;
 }
 
@@ -78,7 +78,6 @@ const getList = document.querySelectorAll("li");
 getList.forEach((x) => {
     x.addEventListener('click', (e) => {
         console.log(e.target.title);
-        // var tet = e.target.title;
         openEmail.innerHTML = e.target.title + "@" +location.hostname;
         optionEmail.title = e.target.title;
         
@@ -112,9 +111,6 @@ optionEmail.addEventListener('click', (e) => {
 });
 
 
-
-
-
 let addNewMail = `
 <label for="new_mail">
     <input type="text" id="new_mail" placeholder="tempmail" value="`+rdmHash.toLocaleLowerCase()+`">
@@ -133,9 +129,15 @@ document.getElementById("random_create").addEventListener('click', () => {
 });
 document.getElementById("confirm_create").addEventListener('click', () => {
     document.getElementById("create").classList.remove("create");
+    const confirm_create = document.getElementById("new_mail").value;
+    const fI = user.listmail.findIndex(x => x == confirm_create);
 
-    let confirm_create = document.getElementById("new_mail").value;
-    user.listmail.unshift(confirm_create);
+    console.log(confirm_create, user.listmail);
+    if(fI == -1) {
+        user.listmail.unshift(confirm_create);
+    } else {
+        alert(confirm_create + " is already exist!");
+    }
     
     // set and reresh
     let retrieveUser = JSON.stringify(user);
@@ -151,18 +153,18 @@ document.getElementById("confirm_create").addEventListener('click', () => {
 document.getElementById("cr").innerHTML += "2021 Copyright: " + location.hostname + " | privacy policy, cookies & terms of service";
 
 
-var d = new Date();
-var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const d = new Date();
+const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
-var month = months[d.getMonth()];
+const month = months[d.getMonth()];
 
 // Set the date we're counting down to
-var countDownDate = new Date(`${month} `+(d.getDate() +1)+`, 2021`).getTime();
+const countDownDate = new Date(`${month} `+(d.getDate() +1)+`, 2021`).getTime();
 
 
 // countdown refresh email
 function startTimer(duration, target) {
-    var timer = duration, minutes, seconds;
+    const timer = duration, minutes, seconds;
     setInterval(function () {
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);

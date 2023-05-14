@@ -1,4 +1,4 @@
-var hash1 = [`SharminPartridge`,
+const hash1 = [`SharminPartridge`,
 `GwenMackenzie`,
 `HumzaCairns`,
 `WillWebber`,
