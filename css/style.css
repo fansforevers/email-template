@@ -1,10 +1,60 @@
+:root {
+  --bg: rgba(0,0,0,0.4);
+  --bg-deep: #333;
+  --bg-medium: #555;
+  --blank: rgba(0,0,0,0);
+  --font-color: white;
+  --font-large: 20px;
+  --font-medium: 16px;
+  --font-small: 14px;
+  --font-xsmall: 12px;
+  --font-xxsmall: 10px;
+  --btn-danger: red;
+  --shadow: .5px .5px .5px #0f0f0f;
+  --theme: orange;
+  --theme-dark: darkorange;
+  --transparent: rgba(225,225,225,0.4);
+  --radius: 4px;
+  --text-shadow: 1px 1px 1px rgba(0,0,0,4), -1px 1px 1px rgba(0,0,0,4);
+}
+
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 1px;
+  height: 1px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: grey;
+}
+
+button, input {
+  cursor: pointer;
+}
+
 header {
   position: relative;
   width: 100%;
   text-align: center;
-  background-color: var(--theme);
-  -webkit-box-shadow: var(--shadow);
-          box-shadow: var(--shadow);
+  background-color: var(--bg-deep);
+  -webkit-box-shadow: var(--text-shadow);
+          box-shadow: var(--text-shadow);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -29,7 +79,7 @@ header div:nth-child(n+0) {
       -ms-flex-align: center;
           align-items: center;
   grid-gap: 8px;
-  color: var(--color);
+  color: var(--font-color);
 }
 
 header div:nth-child(1) {
@@ -78,7 +128,7 @@ header #open-user-setting.show {
 
 header #open-user-setting .container {
   position: relative;
-  background-color: var(--theme);
+  background-color: var(--bg-deep);
   border-radius: var(--radius);
   font-size: 16px;
   padding: 12px;
@@ -97,10 +147,55 @@ header #open-user-setting .container fieldset legend {
   padding: 12px;
 }
 
+header #open-user-setting .container fieldset label input, header #open-user-setting .container fieldset button {
+  padding: 4px 8px;
+  border-radius: var(--radius);
+}
+
+header #open-user-setting .container fieldset label input {
+  width: 48px;
+}
+
+header #open-user-setting .container fieldset button {
+  background-color: var(--theme-dark);
+  color: var(--font-color);
+  text-shadow: var(--text-shadow);
+}
+
+header #open-user-setting .container fieldset button:hover {
+  background-color: var(--theme);
+}
+
 header #open-user-setting .container .close-setting {
   position: absolute;
-  top: 0;
-  right: -48px;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  background-color: var(--btn-danger);
+  border-radius: 50%;
+  color: var(--font-color);
+  font-size: var(--font-small);
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 0;
+}
+
+header #open-user-setting .container .close-setting:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 main {
@@ -143,7 +238,6 @@ main .temp {
   -ms-grid-row-span: 2;
   -ms-grid-column: 1;
   grid-area: temp;
-  background-color: var(--bg);
   border-radius: var(--radius);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -162,7 +256,7 @@ main .temp {
 
 main .temp .premium {
   width: 100%;
-  background-color: var(--theme);
+  background-color: var(--bg-deep);
   padding: 8px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -201,13 +295,12 @@ main .temp .premium .countdown #countdown {
   left: 50%;
   -webkit-transform: translate(-30%, -40%);
           transform: translate(-30%, -40%);
-  color: var(--theme);
-  font-size: 12px;
+  color: var(--font-color);
+  font-size: var(--font-small);
   z-index: 1;
 }
 
 main .temp .premium > span {
-  border: 1px solid var(--theme);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -220,16 +313,20 @@ main .temp .premium > span {
 }
 
 main .temp .premium > span p {
-  font-size: 12px;
+  font-size: var(--font-small);
 }
 
 main .temp .premium > span p button {
-  background-color: gold;
+  background-color: var(--theme-dark);
   border: 0;
   border-radius: var(--radius);
-  color: var(--theme);
-  font-size: 12px;
+  color: var(--font-color);
+  font-size: var(--font-small);
   padding: 4px;
+}
+
+main .temp .premium > span p button:hover {
+  background-color: var(--theme);
 }
 
 main .temp ul {
@@ -253,56 +350,74 @@ main .temp ul::-webkit-scrollbar {
   height: 8px;
 }
 
-main .temp ul::-webkit-scrollbar-thumb {
-  background: yellow;
-}
-
 main .temp ul li {
   position: relative;
   background-color: var(--transparent);
   border-radius: var(--radius);
-  font-size: 14px;
-  padding: 8px;
+  color: var(--font-color);
+  font-size: var(--font-small);
+  padding: 4px;
   cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  gap: 12px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 4px;
 }
 
-main .temp ul li.list.active {
+main .temp ul li:hover {
+  background-color: var(--theme);
+}
+
+main .temp ul li.active {
   background-color: var(--theme-dark);
 }
 
-main .temp ul li .mail::before {
+main .temp ul li div.mail::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--blank);
+}
+
+main .temp ul li div::before {
   content: '+ ';
   font-weight: bold;
 }
 
-main .temp ul li div.editor {
+main .temp ul li button.delete {
+  position: relative;
+  background-color: unset;
+  color: var(--font-color);
+  font-size: var(--font-xsmall);
+  text-shadow: var(--text-shadow);
+  z-index: 8;
+}
+
+main .temp ul li button.delete::after {
+  content: '';
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--blank);
 }
 
-main .temp ul li div.editor button {
-  border: 0;
-  border-radius: var(--radius);
-  padding: 2px 2px 0 2px;
-  cursor: pointer;
-  background-color: var(--color);
-  color: var(--theme);
-  margin: 1px;
-}
-
-main .temp ul li div.editor button img {
-  width: 16px;
+main .temp ul li button.delete:hover {
+  color: var(--btn-danger);
 }
 
 main .temp #create {
@@ -427,7 +542,6 @@ main .inbox {
   -ms-grid-column: 2;
   grid-area: inbox;
   width: 100%;
-  border: 1px solid var(--theme);
   border-radius: var(--radius);
   -webkit-box-shadow: var(--bg);
           box-shadow: var(--bg);
@@ -441,9 +555,8 @@ main .inbox {
 }
 
 main .inbox .head {
-  background-color: var(--theme);
   color: var(--color);
-  font-size: 16px;
+  font-size: var(--font-medium);
   padding: 12px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -501,12 +614,11 @@ main .inbox .msn .no_message {
 
 main .inbox .msn .no_message p {
   font-weight: bold;
-  color: var(--theme);
-  font-size: 24px;
+  color: var(--font-color);
+  font-size: var(--font-large);
 }
 
 main .inbox .msn .new_message {
-  background-color: var(--theme);
   border: 1.5px dashed var(--bg);
   border-radius: var(--radius);
   width: 100%;
@@ -524,7 +636,7 @@ main .inbox .msn .new_message {
 }
 
 main .inbox .msn .new_message .new_from, main .inbox .msn .new_message .new_email, main .inbox .msn .new_message .new_justnow, main .inbox .msn .new_message .new_readmore {
-  font-size: 12px;
+  font-size: var(--font-small);
 }
 
 main .inbox .msn .new_message .new_from {
@@ -554,7 +666,7 @@ main .inbox .msn .new_message .new_readmore {
 }
 
 footer {
-  background-color: var(--theme);
+  background-color: var(--bg-deep);
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -571,45 +683,11 @@ footer p {
   font-size: 14px;
 }
 
-:root {
-  --bg: rgba(0,0,0,0.4);
-  --color: white;
-  --shadow: .5px .5px .5px #0f0f0f;
-  --theme: #0e0e0e;
-  --transparent: rgba(225,225,225,0.4);
-  --radius: 4px;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-::-webkit-scrollbar {
-  width: 1px;
-  height: 1px;
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 1px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: grey;
-  border-radius: 1px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: grey;
-}
-
 body {
-  background-color: #333;
+  background-color: var(--bg-deep);
   width: 100vw;
-  color: var(--color);
-  text-shadow: var(--shadow);
+  color: var(--font-color);
+  text-shadow: var(--text-shadow);
   font-family: Georgia, 'Times New Roman', Times, sans-serif;
   display: -ms-grid;
   display: grid;
@@ -757,7 +835,7 @@ aside .sect-forth {
 }
 
 aside .sect-first, aside .sect-second, aside .sect-third, aside .sect-forth {
-  background-color: var(--bg);
+  background-color: var(--bg-deep);
   border: 1px solid var(--theme);
   border-radius: 4px;
   display: -webkit-box;
@@ -786,8 +864,8 @@ aside .sect-first img, aside .sect-second img, aside .sect-third img, aside .sec
 
 aside .sect-first p, aside .sect-second p, aside .sect-third p, aside .sect-forth p {
   min-height: 96px;
-  color: var(--color);
-  font-size: 10px;
+  color: var(--font-color);
+  font-size: var(--font-xxsmall);
   text-align: center;
 }
 
@@ -803,7 +881,7 @@ footer {
   left: 0;
   width: 100%;
   height: 48px;
-  background-color: var(--theme);
+  background-color: var(--bg-deep);
   padding: 0 24px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -817,18 +895,23 @@ footer {
 }
 
 .allow-cookie p {
-  font-size: 12px;
+  font-size: var(--font-small);
 }
 
 .allow-cookie p a {
-  color: gold;
+  color: var(--theme);
 }
 
 .allow-cookie button {
-  background-color: var(--color);
-  border: 0;
-  padding: 4px 12px;
+  background-color: var(--theme-dark);
   border-radius: 4px;
+  color: var(--font-color);
+  font-weight: bold;
+  padding: 4px 12px;
   cursor: pointer;
+}
+
+.allow-cookie button:hover {
+  background-color: var(--theme);
 }
 /*# sourceMappingURL=style.css.map */

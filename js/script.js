@@ -24,40 +24,12 @@ function onStorage(req = "get", res) {
  
     } else if(req == "set") {
         localStorage.setItem(storageKey, JSON.stringify(res));
-        // console.log(get);
+        user = JSON.parse(localStorage.getItem(storageKey));
     } else if(req == "del") {
         // localStorage.setItem(storageKey, JSON.stringify(defaultStorage));
         console.log(get);
     }
 }
-// console.log(onStorage(req = "get"));
-
-
-// if(localStorage.getItem("user") === null || localStorage.getItem("user") === undefined) {
-//     setItem_localStorage();
-    
-//     setTimeout(() => {
-//         window.location.reload();
-//     }, 500);
-// } else {
-//     getItem_localStorage();
-// }
-
-// function setItem_localStorage() {
-//     let retrieveUser = JSON.stringify(user);
-//     localStorage.setItem("user", retrieveUser);
-//     // console.log(user);
-//     return;
-// }
-// function getItem_localStorage() {
-//     let retrieveUser = localStorage.getItem("user");
-//     user = JSON.parse(retrieveUser);
-//     // console.log(user);
-//     return user;
-// }
-
-
-
 
 
 // on header
@@ -77,7 +49,7 @@ const settings = `
         <button id="save-setting">save setting</button>
     </fieldset>
 
-    <button class="close-setting" onclick="close_setting()">close</button>
+    <button class="close-setting" onclick="close_setting()"><i class="material-icons">close</i></button>
 </div>
 `;
 document.getElementById("open-user-setting").innerHTML = settings;
@@ -89,22 +61,39 @@ const openEmail = document.getElementById("open-email");
 function showList() {
     let setListMail = ``;
     for(i=0; i < user.listmail.length; i++) {
-        setListMail += `<li class="list" title="`+user.listmail[i]+`">
-        <div class="mail" title="`+user.listmail[i]+`">`+ user.listmail[i].toLocaleLowerCase() + `@` + location.hostname +`</div>
+        setListMail += `<li title="`+user.listmail[i]+`">
+        <div class="mail">`+ user.listmail[i].toLocaleLowerCase() + `@` + location.hostname +`</div>
+        <button class="delete"><i class="material-icons">delete</i></button>
     </li>`;
     }
     document.getElementById("list-mail").innerHTML = setListMail;
     
-    const getList = document.querySelectorAll(".list");
-    
-    getList.forEach((x) => {
+    const getList = document.querySelectorAll(".mail");
+    const getDelList = document.querySelectorAll(".delete");
+
+    getList.forEach(x => {
         x.addEventListener('click', (e) => {
+            getList.forEach(x => {
+                x.classList.remove("active");
+            })
+
             e.target.classList.add("active");
-            openEmail.innerHTML = e.target.title + "@" +location.hostname;
-            optionEmail.title = e.target.title;
+            openEmail.innerHTML = e.target.parentElement.title + "@" +location.hostname;
+            optionEmail.title = e.target.parentElement.title;
         });
     });
-
+    
+    getDelList.forEach(x => {
+        x.addEventListener('click', (e) => {
+            const conf = confirm("Are you sure to delete this mail?");
+            if(conf) {
+                // delete current mail 
+                user.listmail = user.listmail.filter(item => item !== e.target.parentElement.title);
+                onStorage(req = "set", user);
+                e.target.parentElement.style = "display: none;";
+            }
+        });
+    });
 
     // if(user.listmail.length < 1) {
     //     openEmail.innerHTML = rdmHash.toLocaleLowerCase() + "@" +location.hostname;
@@ -121,18 +110,6 @@ function showList() {
 
 }
 showList();
-
-
-
-// optionEmail.addEventListener('click', (e) => {
-//     // delete current mail 
-//     user.listmail = user.listmail.filter(item => item !== e.target.title);
-    
-//     // set and reresh
-//     onStorage(req = "set", user);
-//     showList();
-// });
-
 
 let addNewMail = `
 <label for="new_mail">
@@ -186,7 +163,7 @@ const countDownDate = new Date(`${month} `+(d.getDate() +1)+`, 2021`).getTime();
 // countdown refresh email
 function startTimer(duration, target) {
     let timer = duration, minutes, seconds;
-    setInterval(function () {
+    setInterval(() => {
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
 
@@ -196,6 +173,9 @@ function startTimer(duration, target) {
         // target.textContent = minutes + ":" + seconds;
         let targetDuration = document.getElementById(target);
             targetDuration.textContent = seconds;
+            if(seconds == 0) {
+                changeInbox();
+            }
 
         if (--timer < 0) {
             timer = duration;
@@ -203,10 +183,6 @@ function startTimer(duration, target) {
     }, 1000);
 }
 startTimer(user.duration, "countdown");
-setTimeout(function() {
-    changeInbox();
-}, (user.duration * 1000) + 500);
-
 
 const allowCookie = `
 <div class="allow-cookie">
@@ -221,6 +197,7 @@ if(user.allowcookie === false) {
         e.target.parentElement.style = "display:none";
         user.allowcookie = true;
 
+        
         // set and reresh
         onStorage(req = "set", user);
         window.location.reload();

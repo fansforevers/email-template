@@ -6,9 +6,7 @@ document.getElementById("save-setting").addEventListener('click', () => {
     user.duration = set_duration.value;
 
     // set and reresh
-    let retrieveUser = JSON.stringify(user);
-    localStorage.setItem("user", retrieveUser);
-    getItem_localStorage();
+    onStorage(req = "set", user);
 });
 
 // close settings

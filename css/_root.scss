@@ -1,0 +1,84 @@
+
+:root {
+    --bg: rgba(0,0,0,0.4);
+    --bg-deep: #333;
+    --bg-medium: #555;
+    --blank: rgba(0,0,0,0);
+    --font-color: white;
+    --font-large: 20px;
+    --font-medium: 16px;
+    --font-small: 14px;
+    --font-xsmall: 12px;
+    --font-xxsmall: 10px;
+
+    --btn-danger: red;
+
+    --shadow: .5px .5px .5px #0f0f0f;
+    --theme: orange;
+    --theme-dark: darkorange;
+    --transparent: rgba(225,225,225,0.4);
+    --radius: 4px;
+    --text-shadow: 1px 1px 1px rgba(0,0,0,4), -1px 1px 1px rgba(0,0,0,4);
+  }
+* {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+::-webkit-scrollbar { 
+    width: 1px; 
+    height: 1px; 
+}
+::-webkit-scrollbar-track { 
+    border-radius: 1px; 
+}
+::-webkit-scrollbar-thumb { 
+    background: grey; 
+    border-radius: 1px; 
+
+    &:hover { 
+        background: grey; 
+    }
+}
+
+button, input {
+    cursor: pointer;
+}
+
+@mixin masking() {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--blank);
+}
+
+@mixin flex($fdir, $ate, $jco, $gap) {
+    display: flex;
+    flex-direction: $fdir;
+    align-items: $ate;
+    justify-content: $jco;
+    gap: $gap;
+}
+
+@mixin closebtn() {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    background-color: var(--btn-danger);
+    border-radius: 50%;
+    color: var(--font-color);
+    font-size: var(--font-small);
+    font-weight: bold;
+
+    @include flex(row, center, center, 0);
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}

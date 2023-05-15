@@ -23,17 +23,16 @@ main {
     
     .temp {
         grid-area: temp;
-        background-color: var(--bg);
         border-radius: var(--radius);
-
+        
         display: flex;
         flex-direction: column;
         align-items: start;
         justify-content: start;
-
+        
         .premium {
             width: 100%;
-            background-color: var(--theme);
+            background-color: var(--bg-deep);
             padding: 8px;
 
             display: flex;
@@ -58,28 +57,31 @@ main {
                     top: 50%;
                     left: 50%;
                     transform: translate(-30%, -40%);
-                    color: var(--theme);
-                    font-size: 12px;
+                    color: var(--font-color);
+                    font-size: var(--font-small);
                     z-index: 1;
                 }
             }
             
             & > span {
-                border: 1px solid var(--theme);
                 display: flex;
                 align-items: stretch;
                 justify-content: space-between;
 
                 p {
-                    font-size: 12px;
+                    font-size: var(--font-small);
                     
                     button {
-                        background-color: gold;
+                        background-color: var(--theme-dark);
                         border: 0;
                         border-radius: var(--radius);
-                        color: var(--theme);
-                        font-size: 12px;
+                        color: var(--font-color);
+                        font-size: var(--font-small);
                         padding: 4px;
+                        
+                        &:hover {
+                            background-color: var(--theme);
+                        }
                     }
                 }
             }
@@ -100,56 +102,48 @@ main {
                 width: 8px; 
                 height: 8px; 
             }
-            &::-webkit-scrollbar-thumb {
-                background: yellow;
-            }
             
             li {
                 position: relative;
                 background-color: var(--transparent);
                 border-radius: var(--radius);
-                font-size: 14px;
-                padding: 8px;
+                color: var(--font-color);
+                font-size: var(--font-small);
+                padding: 4px;
                 cursor: pointer;
 
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
-                gap: 12px;
-
-                &.list {
-                    &.active {
-                        background-color: var(--theme-dark);
+                @include flex(row, center, space-between, 4px);
+                
+                &:hover { background-color: var(--theme); }
+                &.active { background-color: var(--theme-dark); }
+                
+                div {
+                    &.mail {
+                        &::after { 
+                            @include masking();
+                        }
                     }
-                }
 
-                .mail {
                     &::before {
                         content: '+ ';
                         font-weight: bold;
                     }
                 }
-                
-                div {
-                    
-                    &.editor {
-                        position: absolute;
-                        top: 0;
-                        right: 0;
 
-                        button {
-                            border: 0;
-                            border-radius: var(--radius);
-                            padding: 2px 2px 0 2px;
-                            cursor: pointer;
-                            background-color: var(--color);
-                            color: var(--theme);
-                            margin: 1px;
-                            
-                            img {
-                                width: 16px;
-                            }
-                        }
+                button.delete {
+                    position: relative;
+                    background-color: unset;
+                    color: var(--font-color);
+                    font-size: var(--font-xsmall);
+                    text-shadow: var(--text-shadow);
+                    z-index: 8;
+
+                    &::after { 
+                        @include masking();
+                    }
+
+                    &:hover {
+                        color: var(--btn-danger);
                     }
                 }
             }
@@ -239,16 +233,16 @@ main {
     .inbox {
         grid-area: inbox;
         width: 100%;
-        border: 1px solid var(--theme);
+        // border: 1px solid var(--theme);
         border-radius: var(--radius);
         box-shadow: var(--bg);
         display: flex;
         flex-direction: column;
         
         .head {
-            background-color: var(--theme);
+            // background-color: var(--theme);
             color: var(--color);
-            font-size: 16px;
+            font-size: var(--font-medium);
             padding: 12px;
 
             display: flex;
@@ -291,13 +285,13 @@ main {
                 
                 p {
                     font-weight: bold;
-                    color: var(--theme);
-                    font-size: 24px;
+                    color: var(--font-color);
+                    font-size: var(--font-large);
                 }
             }
 
             .new_message {
-                background-color: var(--theme);
+                // background-color: var(--theme);
                 border: 1.5px dashed var(--bg);
                 border-radius: var(--radius);
                 width: 100%;
@@ -314,7 +308,7 @@ main {
                 padding: 4px;
 
                 .new_from, .new_email, .new_justnow, .new_readmore { 
-                    font-size: 12px;
+                    font-size: var(--font-small);
                 }
 
                 .new_from { grid-area: new_from; }

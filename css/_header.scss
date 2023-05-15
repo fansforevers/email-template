@@ -8,8 +8,8 @@ header {
 
     width: 100%;
     text-align: center;
-    background-color: var(--theme);
-    box-shadow: var(--shadow);
+    background-color: var(--bg-deep);
+    box-shadow: var(--text-shadow);
 
     display: flex;
     align-items: center;
@@ -24,7 +24,7 @@ header {
             align-items: center;
             grid-gap: 8px;
             
-            color: var(--color);
+            color: var(--font-color);
         }
         
         &:nth-child(1) {
@@ -63,7 +63,7 @@ header {
 
         .container {
             position: relative;
-            background-color: var(--theme);
+            background-color: var(--bg-deep);
             border-radius: var(--radius);
             font-size: 16px;
             padding: 12px;
@@ -79,13 +79,29 @@ header {
                     font-size: 16px;
                     padding: 12px;
                 }
+
+                label input, button {
+                    padding: 4px 8px;
+                    border-radius: var(--radius);
+                }
+
+                label input {
+                    width: 48px;
+                }
+
+                button {
+                    background-color: var(--theme-dark);
+                    color: var(--font-color);
+                    text-shadow: var(--text-shadow);
+                    
+                    &:hover {
+                        background-color: var(--theme);
+                    }
+                }
             }
-
-
+            
             .close-setting {
-                position: absolute;
-                top: 0;
-                right: -48px;
+                @include closebtn();
             }
         }
     }
