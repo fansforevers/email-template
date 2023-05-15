@@ -117,6 +117,12 @@ main {
                 justify-content: flex-start;
                 gap: 12px;
 
+                &.list {
+                    &.active {
+                        background-color: var(--theme-dark);
+                    }
+                }
+
                 .mail {
                     &::before {
                         content: '+ ';

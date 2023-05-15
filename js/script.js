@@ -1,34 +1,60 @@
-let user = {
-    email : "fansforevers@gmail.com",
-    license : "",
+const storageKey = "tempmail";
+let user = onStorage(req = "get");
 
-    listmail : [],
-    duration : 10,
-    forward : "fansforevers@gmail.com",
-    allowcookie: false,
+function onStorage(req = "get", res) {
+    let defaultStorage = {
+        email : "fansforevers@gmail.com",
+        license : "",
+    
+        listmail : [],
+        duration : 10,
+        forward : "fansforevers@gmail.com",
+        allowcookie: false,
+    };
+    let get = JSON.parse(localStorage.getItem(storageKey));
+    let getBack = get;
+ 
+    if(req == "get") {
+        if(get == undefined || get == null) {
+            localStorage.setItem(storageKey, JSON.stringify(defaultStorage));
+            return defaultStorage;
+        } else { 
+            return getBack; 
+        }
+ 
+    } else if(req == "set") {
+        localStorage.setItem(storageKey, JSON.stringify(res));
+        // console.log(get);
+    } else if(req == "del") {
+        // localStorage.setItem(storageKey, JSON.stringify(defaultStorage));
+        console.log(get);
+    }
 }
+// console.log(onStorage(req = "get"));
 
-if(localStorage.getItem("user") === null || localStorage.getItem("user") === undefined) {
-    setItem_localStorage();
-    setTimeout(() => {
-        window.location.reload();
-    }, 500);
-} else {
-    getItem_localStorage();
-}
 
-function setItem_localStorage() {
-    let retrieveUser = JSON.stringify(user);
-    localStorage.setItem("user", retrieveUser);
-    // console.log(user);
-    return;
-}
-function getItem_localStorage() {
-    let retrieveUser = localStorage.getItem("user");
-    user = JSON.parse(retrieveUser);
-    // console.log(user);
-    return user;
-}
+// if(localStorage.getItem("user") === null || localStorage.getItem("user") === undefined) {
+//     setItem_localStorage();
+    
+//     setTimeout(() => {
+//         window.location.reload();
+//     }, 500);
+// } else {
+//     getItem_localStorage();
+// }
+
+// function setItem_localStorage() {
+//     let retrieveUser = JSON.stringify(user);
+//     localStorage.setItem("user", retrieveUser);
+//     // console.log(user);
+//     return;
+// }
+// function getItem_localStorage() {
+//     let retrieveUser = localStorage.getItem("user");
+//     user = JSON.parse(retrieveUser);
+//     // console.log(user);
+//     return user;
+// }
 
 
 
@@ -56,59 +82,56 @@ const settings = `
 `;
 document.getElementById("open-user-setting").innerHTML = settings;
 
+const optionEmail = document.getElementById("option-email");
+const openEmail = document.getElementById("open-email");
+
 // on main
 function showList() {
-    // console.log(user.listmail);
-
     let setListMail = ``;
     for(i=0; i < user.listmail.length; i++) {
-        setListMail += `<li title="`+user.listmail[i]+`">
+        setListMail += `<li class="list" title="`+user.listmail[i]+`">
         <div class="mail" title="`+user.listmail[i]+`">`+ user.listmail[i].toLocaleLowerCase() + `@` + location.hostname +`</div>
     </li>`;
     }
     document.getElementById("list-mail").innerHTML = setListMail;
+    
+    const getList = document.querySelectorAll(".list");
+    
+    getList.forEach((x) => {
+        x.addEventListener('click', (e) => {
+            e.target.classList.add("active");
+            openEmail.innerHTML = e.target.title + "@" +location.hostname;
+            optionEmail.title = e.target.title;
+        });
+    });
+
+
+    // if(user.listmail.length < 1) {
+    //     openEmail.innerHTML = rdmHash.toLocaleLowerCase() + "@" +location.hostname;
+        
+    //     user.listmail[0] = rdmHash.toLocaleLowerCase();
+    //     optionEmail.title = user.listmail[0];
+        
+    //     // set and reresh
+    //     onStorage(req = "set", user);
+    // } else {
+    //     openEmail.innerHTML = user.listmail[0].toLocaleLowerCase() + "@" +location.hostname;
+    //     optionEmail.title = user.listmail[0];
+    // }
 
 }
 showList();
 
-const openEmail = document.getElementById("open-email");
-const optionEmail = document.getElementById("option-email");
 
-const getList = document.querySelectorAll("li");
-getList.forEach((x) => {
-    x.addEventListener('click', (e) => {
-        console.log(e.target.title);
-        openEmail.innerHTML = e.target.title + "@" +location.hostname;
-        optionEmail.title = e.target.title;
-        
-    });
-});
 
-if(user.listmail.length < 1) {
-    openEmail.innerHTML = rdmHash.toLocaleLowerCase() + "@" +location.hostname;
+// optionEmail.addEventListener('click', (e) => {
+//     // delete current mail 
+//     user.listmail = user.listmail.filter(item => item !== e.target.title);
     
-    user.listmail[0] = rdmHash.toLocaleLowerCase();
-    optionEmail.title = user.listmail[0];
-    
-    // set and reresh
-    let retrieveUser = JSON.stringify(user);
-    localStorage.setItem("user", retrieveUser);
-    getItem_localStorage();
-} else {
-    openEmail.innerHTML = user.listmail[0].toLocaleLowerCase() + "@" +location.hostname;
-    optionEmail.title = user.listmail[0];
-}
-
-optionEmail.addEventListener('click', (e) => {
-    // delete current mail 
-    user.listmail = user.listmail.filter(item => item !== e.target.title);
-    
-    // set and reresh
-    let retrieveUser = JSON.stringify(user);
-    localStorage.setItem("user", retrieveUser);
-    getItem_localStorage();
-    showList();
-});
+//     // set and reresh
+//     onStorage(req = "set", user);
+//     showList();
+// });
 
 
 let addNewMail = `
@@ -140,9 +163,7 @@ document.getElementById("confirm_create").addEventListener('click', () => {
     }
     
     // set and reresh
-    let retrieveUser = JSON.stringify(user);
-    localStorage.setItem("user", retrieveUser);
-    getItem_localStorage();
+    onStorage(req = "set", user);
     showList();
 });
 
@@ -164,7 +185,7 @@ const countDownDate = new Date(`${month} `+(d.getDate() +1)+`, 2021`).getTime();
 
 // countdown refresh email
 function startTimer(duration, target) {
-    const timer = duration, minutes, seconds;
+    let timer = duration, minutes, seconds;
     setInterval(function () {
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
@@ -201,9 +222,7 @@ if(user.allowcookie === false) {
         user.allowcookie = true;
 
         // set and reresh
-        let retrieveUser = JSON.stringify(user);
-        localStorage.setItem("user", retrieveUser);
-        getItem_localStorage();
+        onStorage(req = "set", user);
         window.location.reload();
     });
 }

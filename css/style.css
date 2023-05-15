@@ -276,6 +276,10 @@ main .temp ul li {
   gap: 12px;
 }
 
+main .temp ul li.list.active {
+  background-color: var(--theme-dark);
+}
+
 main .temp ul li .mail::before {
   content: '+ ';
   font-weight: bold;
