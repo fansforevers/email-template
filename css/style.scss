@@ -10,7 +10,7 @@ body {
     
     display: grid;
     grid-template-areas: "header" "main" "aside" "footer";
-    grid-template-rows: 76px repeat(2, min-content) 10vh;
+    grid-template-rows: min-content repeat(2, min-content) 10vh;
     grid-gap: 12px;
     
     @media screen and (max-width: 768px) {
@@ -47,56 +47,33 @@ main {
 
 aside {
     grid-area: aside;
+    padding: 8px;
+
     display: grid;
-    grid-template-areas: "s1 s2 s3 s4";
-    grid-template-columns: repeat(4, 176px);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: min-content;
-    grid-gap: 12px;
+    grid-gap: 8px;
+    
     align-items: center;
     justify-content: center;
-    padding: 4px;
-
+    
     @media screen and (max-width: 768px) {
-        grid-template-areas: "s1 s2" "s3 s4";
         grid-template-columns: repeat(2, 45%);
         grid-template-rows: repeat(2, min-content);
-
-        .sect-first { grid-area: s1; }
-        .sect-second { grid-area: s2; }
-        .sect-third { grid-area: s3; }
-        .sect-forth { grid-area: s4; }
     }
-
-    .sect-first { grid-area: s1; }
-    .sect-second { grid-area: s2; }
-    .sect-third { grid-area: s3; }
-    .sect-forth { grid-area: s4; }
-
-    .sect-first, .sect-second, .sect-third, .sect-forth {
+    
+    div {
+        height: 128px;
         background-color: var(--bg-deep);
         border: 1px solid var(--theme);
-        border-radius: 4px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        grid-gap: 8px;
+        border-radius: var(--radius);
+        font-size: var(--font-xsmall);
+        text-align: center;
+        text-shadow: var(--text-shadow);
         padding: 8px;
-        
-        img {
-            max-width: 64px;
-            max-height: 64px;
-            filter: invert(100%);
-        }
-
-        p {
-            min-height: 96px;
-            color: var(--font-color);
-            font-size: var(--font-xxsmall);
-            text-align: center;
-        }
+    
+        @include flex(row, center, center, 12px);
     }
-
 }
 
 footer {

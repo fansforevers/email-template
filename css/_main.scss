@@ -34,32 +34,15 @@ main {
             width: 100%;
             background-color: var(--bg-deep);
             padding: 8px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
+            
+            @include flex(row, center, space-between, 12px);
 
             .countdown {
-                position: relative;
-
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                img {
-                    width: 24px;
-                    filter: invert(100%);
-                }
+                @include flex(row, center, center, 4px);
                 
                 #countdown {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-30%, -40%);
                     color: var(--font-color);
-                    font-size: var(--font-small);
-                    z-index: 1;
+                    font-size: var(--font-large);
                 }
             }
             
@@ -233,40 +216,24 @@ main {
     .inbox {
         grid-area: inbox;
         width: 100%;
-        // border: 1px solid var(--theme);
         border-radius: var(--radius);
-        box-shadow: var(--bg);
+
         display: flex;
         flex-direction: column;
         
         .head {
-            // background-color: var(--theme);
             color: var(--color);
             font-size: var(--font-medium);
             padding: 12px;
-
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 8px;
             
-            img {
-                width: 24px;
-                filter: invert(100%);
-                cursor: pointer;
-            }
+            @include flex(row, center, flex-start, 8px);
         }
         
         .msn {
             position: relative;
-            background-color: rgba(250,250,250,0.8);
+            background-color: var(--bg-middle);
             width: 100%;
             height: 420px;
-            // display: flex;
-            // flex-direction: column;
-            // align-items: center;
-            // justify-content: center;
             padding: 12px;
 
             @media screen and (max-width: 768px) {
@@ -275,13 +242,12 @@ main {
     
             .no_message {
                 background-color: var(--transparent);
-                border: 1.5px dashed var(--bg);
+                border: 1.5px dashed var(--bg-deep);
                 border-radius: var(--radius);
                 width: 100%;
                 height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                
+                @include flex(row, center, center, 8px);
                 
                 p {
                     font-weight: bold;
@@ -291,14 +257,11 @@ main {
             }
 
             .new_message {
-                // background-color: var(--theme);
-                border: 1.5px dashed var(--bg);
+                border: 1.5px dashed var(--bg-deep);
                 border-radius: var(--radius);
                 width: 100%;
                 height: min-content;
-                // display: flex;
-                // align-items: center;
-                // justify-content: center;
+                
                 display: grid;
                 grid-template-areas: 
                 "new_from new_justnow" 

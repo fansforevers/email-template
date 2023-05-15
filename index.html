@@ -11,13 +11,11 @@
 <body>
     
     <header>
-        <div>
-            <span>SHADOW</span>
+        <div class="container">
+            <span class="logo">SHADOW</span>
         </div>
-        <div>
-            <img src="./img/user.svg">
-            <span>user</span>
-            <img id="user-setting" src="./img/sett.svg">
+        <div class="container">
+            <button id="user-setting"><i class="material-icons">settings</i></button>
         </div>
         <div id="open-user-setting"></div>
     </header>
@@ -27,8 +25,8 @@
         <div class="temp">
             <div class="premium">
                 <div class="countdown">
+                    <i class="material-icons">autorenew</i>
                     <span id="countdown">00</span>
-                    <img src="./img/list.svg">
                 </div>
 
                 <span>1/10 free email</span>
@@ -40,7 +38,7 @@
             <div id="create">
                 <div class="slider">
                     <span id="let-create">
-                        <img src="./img/create.svg">
+                        <i class="material-icons">add</i>
                         <p>Create</p>
                     </span>
                     
@@ -51,9 +49,8 @@
 
         <div class="inbox">
             <div class="head">
-                <img src="./img/temp.svg">
+                <i class="material-icons">mail</i>
                 <span id="open-email"></span>
-                <img id="option-email" title="" src="./img/delete.svg">
             </div>
 
             <div id="new-msn" class="msn">
@@ -66,22 +63,10 @@
     </main>
 
     <aside>
-        <div class="sect-first">
-            <img src="./img/noads.svg">
-            <p>no ADS (7 days) for free user. <br>Protects from adware and malware.</p>
-        </div>
-        <div class="sect-second">
-            <img src="./img/step.svg">
-            <p>You will have the email after you click the lock button before it finally disappears because it is reloaded, you can create more temporary email after you register.</p>
-        </div>
-        <div class="sect-third">
-            <img src="./img/temporary.svg">
-            <p>Emails are just temporarily stored. We just store the latest mails received in memory and flush them out as needed. Temporary Email box at your disposal because no one likes an inbox full of spam emails.</p>
-        </div>
-        <div class="sect-forth">
-            <img src="./img/support.svg">
-            <p>Use our simple and functional design to get your disposable email. We provide either a random email account or you can choose an address of your choice for example : shadow@${location.hostname}. Please support us to become your favorite temporary email service.</p>
-        </div>
+        <div>no ADS (7 days) for free user. <br><br>Protects from adware and malware.</div>
+        <div>You will have the email after you click the lock button before it finally disappears because it is reloaded, you can create more temporary email after you register.</div>
+        <div>Emails are just temporarily stored. We just store the latest mails received in memory and flush them out as needed. Temporary Email box at your disposal because no one likes an inbox full of spam emails.</div>
+        <div>Use our simple and functional design to get your disposable email. We provide either a random email account or you can choose an address of your choice. Please support us to become your favorite temporary email service.</div>
     </aside>
     
     <footer>

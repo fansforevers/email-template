@@ -54,7 +54,6 @@ const settings = `
 `;
 document.getElementById("open-user-setting").innerHTML = settings;
 
-const optionEmail = document.getElementById("option-email");
 const openEmail = document.getElementById("open-email");
 
 // on main
@@ -79,7 +78,6 @@ function showList() {
 
             e.target.classList.add("active");
             openEmail.innerHTML = e.target.parentElement.title + "@" +location.hostname;
-            optionEmail.title = e.target.parentElement.title;
         });
     });
     
@@ -94,20 +92,6 @@ function showList() {
             }
         });
     });
-
-    // if(user.listmail.length < 1) {
-    //     openEmail.innerHTML = rdmHash.toLocaleLowerCase() + "@" +location.hostname;
-        
-    //     user.listmail[0] = rdmHash.toLocaleLowerCase();
-    //     optionEmail.title = user.listmail[0];
-        
-    //     // set and reresh
-    //     onStorage(req = "set", user);
-    // } else {
-    //     openEmail.innerHTML = user.listmail[0].toLocaleLowerCase() + "@" +location.hostname;
-    //     optionEmail.title = user.listmail[0];
-    // }
-
 }
 showList();
 
@@ -131,8 +115,7 @@ document.getElementById("confirm_create").addEventListener('click', () => {
     document.getElementById("create").classList.remove("create");
     const confirm_create = document.getElementById("new_mail").value;
     const fI = user.listmail.findIndex(x => x == confirm_create);
-
-    console.log(confirm_create, user.listmail);
+    
     if(fI == -1) {
         user.listmail.unshift(confirm_create);
     } else {
@@ -143,8 +126,6 @@ document.getElementById("confirm_create").addEventListener('click', () => {
     onStorage(req = "set", user);
     showList();
 });
-
-
 
 
 // footer copyright 

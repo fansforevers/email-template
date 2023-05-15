@@ -10,35 +10,23 @@ header {
     text-align: center;
     background-color: var(--bg-deep);
     box-shadow: var(--text-shadow);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 8px 16px;
     
-    div {
-        margin: auto;
+    @include flex(row, center, space-between, 12px);
+    
+    & > div.container {
+        .logo {
+            font-size: var(--font-xlarge);
+            font-weight: bold;
+        }
 
-        &:nth-child(n+0) {
-            width: 45%;
-            display: flex;
-            align-items: center;
-            grid-gap: 8px;
-            
+        button {
+            background-color: unset;
             color: var(--font-color);
-        }
-        
-        &:nth-child(1) {
-            justify-content: start;
-            font-size: 32px;
-            font-weight: bold;
-        }
-        &:nth-child(2) {
-            justify-content: flex-end;
-            font-weight: bold;
-
-            img {
-                width: 24px;
-                filter: invert(100%);
+            font-size: var(--font-xlarge);
+            
+            &:hover {
+                color: var(--theme);
             }
         }
     }
@@ -54,14 +42,12 @@ header {
         z-index: 9;
 
         display: none;
-        align-items: center;
-        justify-content: center;
         
         &.show {
-            display: flex;
+            @include flex(row, center, center, 12px);
         }
 
-        .container {
+        & > .container {
             position: relative;
             background-color: var(--bg-deep);
             border-radius: var(--radius);
@@ -69,8 +55,7 @@ header {
             padding: 12px;
 
             display: flex;
-
-
+            
             fieldset {
                 width: 100%;
                 padding: 12px;

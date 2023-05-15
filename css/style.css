@@ -1,9 +1,10 @@
 :root {
   --bg: rgba(0,0,0,0.4);
   --bg-deep: #333;
-  --bg-medium: #555;
+  --bg-middle: #555;
   --blank: rgba(0,0,0,0);
   --font-color: white;
+  --font-xlarge: 24px;
   --font-large: 20px;
   --font-medium: 16px;
   --font-small: 14px;
@@ -55,52 +56,36 @@ header {
   background-color: var(--bg-deep);
   -webkit-box-shadow: var(--text-shadow);
           box-shadow: var(--text-shadow);
+  padding: 8px 16px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 12px;
 }
 
-header div {
-  margin: auto;
+header > div.container .logo {
+  font-size: var(--font-xlarge);
+  font-weight: bold;
 }
 
-header div:nth-child(n+0) {
-  width: 45%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  grid-gap: 8px;
+header > div.container button {
+  background-color: unset;
   color: var(--font-color);
+  font-size: var(--font-xlarge);
 }
 
-header div:nth-child(1) {
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: start;
-  font-size: 32px;
-  font-weight: bold;
-}
-
-header div:nth-child(2) {
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  font-weight: bold;
-}
-
-header div:nth-child(2) img {
-  width: 24px;
-  -webkit-filter: invert(100%);
-          filter: invert(100%);
+header > div.container button:hover {
+  color: var(--theme);
 }
 
 header #open-user-setting {
@@ -112,21 +97,26 @@ header #open-user-setting {
   background-color: var(--transparent);
   z-index: 9;
   display: none;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 header #open-user-setting.show {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 12px;
 }
 
-header #open-user-setting .container {
+header #open-user-setting > .container {
   position: relative;
   background-color: var(--bg-deep);
   border-radius: var(--radius);
@@ -137,36 +127,36 @@ header #open-user-setting .container {
   display: flex;
 }
 
-header #open-user-setting .container fieldset {
+header #open-user-setting > .container fieldset {
   width: 100%;
   padding: 12px;
 }
 
-header #open-user-setting .container fieldset legend {
+header #open-user-setting > .container fieldset legend {
   font-size: 16px;
   padding: 12px;
 }
 
-header #open-user-setting .container fieldset label input, header #open-user-setting .container fieldset button {
+header #open-user-setting > .container fieldset label input, header #open-user-setting > .container fieldset button {
   padding: 4px 8px;
   border-radius: var(--radius);
 }
 
-header #open-user-setting .container fieldset label input {
+header #open-user-setting > .container fieldset label input {
   width: 48px;
 }
 
-header #open-user-setting .container fieldset button {
+header #open-user-setting > .container fieldset button {
   background-color: var(--theme-dark);
   color: var(--font-color);
   text-shadow: var(--text-shadow);
 }
 
-header #open-user-setting .container fieldset button:hover {
+header #open-user-setting > .container fieldset button:hover {
   background-color: var(--theme);
 }
 
-header #open-user-setting .container .close-setting {
+header #open-user-setting > .container .close-setting {
   position: absolute;
   top: 8px;
   right: 8px;
@@ -193,7 +183,7 @@ header #open-user-setting .container .close-setting {
   gap: 0;
 }
 
-header #open-user-setting .container .close-setting:hover {
+header #open-user-setting > .container .close-setting:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
@@ -261,6 +251,10 @@ main .temp .premium {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -271,33 +265,25 @@ main .temp .premium {
 }
 
 main .temp .premium .countdown {
-  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-}
-
-main .temp .premium .countdown img {
-  width: 24px;
-  -webkit-filter: invert(100%);
-          filter: invert(100%);
+  gap: 4px;
 }
 
 main .temp .premium .countdown #countdown {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-30%, -40%);
-          transform: translate(-30%, -40%);
   color: var(--font-color);
-  font-size: var(--font-small);
-  z-index: 1;
+  font-size: var(--font-large);
 }
 
 main .temp .premium > span {
@@ -543,8 +529,6 @@ main .inbox {
   grid-area: inbox;
   width: 100%;
   border-radius: var(--radius);
-  -webkit-box-shadow: var(--bg);
-          box-shadow: var(--bg);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -574,16 +558,9 @@ main .inbox .head {
   gap: 8px;
 }
 
-main .inbox .head img {
-  width: 24px;
-  -webkit-filter: invert(100%);
-          filter: invert(100%);
-  cursor: pointer;
-}
-
 main .inbox .msn {
   position: relative;
-  background-color: rgba(250, 250, 250, 0.8);
+  background-color: var(--bg-middle);
   width: 100%;
   height: 420px;
   padding: 12px;
@@ -597,19 +574,24 @@ main .inbox .msn {
 
 main .inbox .msn .no_message {
   background-color: var(--transparent);
-  border: 1.5px dashed var(--bg);
+  border: 1.5px dashed var(--bg-deep);
   border-radius: var(--radius);
   width: 100%;
   height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  gap: 8px;
 }
 
 main .inbox .msn .no_message p {
@@ -619,7 +601,7 @@ main .inbox .msn .no_message p {
 }
 
 main .inbox .msn .new_message {
-  border: 1.5px dashed var(--bg);
+  border: 1.5px dashed var(--bg-deep);
   border-radius: var(--radius);
   width: 100%;
   height: -webkit-min-content;
@@ -692,9 +674,9 @@ body {
   display: -ms-grid;
   display: grid;
       grid-template-areas: "header" "main" "aside" "footer";
-  -ms-grid-rows: 76px (min-content)[2] 10vh;
-      grid-template-rows: 76px repeat(2, -webkit-min-content) 10vh;
-      grid-template-rows: 76px repeat(2, min-content) 10vh;
+  -ms-grid-rows: min-content (min-content)[2] 10vh;
+      grid-template-rows: -webkit-min-content repeat(2, -webkit-min-content) 10vh;
+      grid-template-rows: min-content repeat(2, min-content) 10vh;
   grid-gap: 12px;
 }
 
@@ -761,112 +743,56 @@ aside {
   -ms-grid-row: 3;
   -ms-grid-column: 1;
   grid-area: aside;
+  padding: 8px;
   display: -ms-grid;
   display: grid;
-      grid-template-areas: "s1 s2 s3 s4";
-  -ms-grid-columns: (176px)[4];
-      grid-template-columns: repeat(4, 176px);
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
   -ms-grid-rows: min-content;
       grid-template-rows: -webkit-min-content;
       grid-template-rows: min-content;
-  grid-gap: 12px;
+  grid-gap: 8px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 4px;
 }
 
 @media screen and (max-width: 768px) {
   aside {
-        grid-template-areas: "s1 s2" "s3 s4";
     -ms-grid-columns: (45%)[2];
         grid-template-columns: repeat(2, 45%);
     -ms-grid-rows: (min-content)[2];
         grid-template-rows: repeat(2, -webkit-min-content);
         grid-template-rows: repeat(2, min-content);
   }
-  aside .sect-first {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    grid-area: s1;
-  }
-  aside .sect-second {
-    -ms-grid-row: 1;
-    -ms-grid-column: 2;
-    grid-area: s2;
-  }
-  aside .sect-third {
-    -ms-grid-row: 2;
-    -ms-grid-column: 1;
-    grid-area: s3;
-  }
-  aside .sect-forth {
-    -ms-grid-row: 2;
-    -ms-grid-column: 2;
-    grid-area: s4;
-  }
 }
 
-aside .sect-first {
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
-  grid-area: s1;
-}
-
-aside .sect-second {
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
-  grid-area: s2;
-}
-
-aside .sect-third {
-  -ms-grid-row: 1;
-  -ms-grid-column: 3;
-  grid-area: s3;
-}
-
-aside .sect-forth {
-  -ms-grid-row: 1;
-  -ms-grid-column: 4;
-  grid-area: s4;
-}
-
-aside .sect-first, aside .sect-second, aside .sect-third, aside .sect-forth {
+aside div {
+  height: 128px;
   background-color: var(--bg-deep);
   border: 1px solid var(--theme);
-  border-radius: 4px;
+  border-radius: var(--radius);
+  font-size: var(--font-xsmall);
+  text-align: center;
+  text-shadow: var(--text-shadow);
+  padding: 8px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  grid-gap: 8px;
-  padding: 8px;
-}
-
-aside .sect-first img, aside .sect-second img, aside .sect-third img, aside .sect-forth img {
-  max-width: 64px;
-  max-height: 64px;
-  -webkit-filter: invert(100%);
-          filter: invert(100%);
-}
-
-aside .sect-first p, aside .sect-second p, aside .sect-third p, aside .sect-forth p {
-  min-height: 96px;
-  color: var(--font-color);
-  font-size: var(--font-xxsmall);
-  text-align: center;
+  gap: 12px;
 }
 
 footer {
